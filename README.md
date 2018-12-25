@@ -40,7 +40,7 @@ An Unattend.Xml file is included for each (ISO/Windows Edition) pair I have test
 
 That said, the Unattend files will (probably) work for that Edition from any recent US English ISO of the same architecture (x86/amd64). 
 
-All Xml files exist under the <code>unattend-files\\[ISO]</code> location. 
+All Xml files exist under the 'unattend-files\\iso-name' location. <br>
 | ISO | Edition/Unattend.Xml  |
 | --- | -------- |
 | en_windows_10_consumer_editions_version_1809_updated_dec_2018_x64_dvd_d7d23ac9 | Windows 10 Pro.Xml |
