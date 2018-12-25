@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<unattend xmlns="urn:schemas-microsoft-com:unattend">
+    <servicing></servicing>
+    <settings pass="oobeSystem">
+        <component name="Microsoft-Windows-International-Core" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <InputLocale>en-AU</InputLocale>
+            <SystemLocale>en-AU</SystemLocale>
+            <UILanguage>en-AU</UILanguage>
+            <UILanguageFallback>en-US</UILanguageFallback>
+            <UserLocale>en-AU</UserLocale>
+        </component>
+        <component name="Microsoft-Windows-Shell-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <OOBE>
+                <HideEULAPage>true</HideEULAPage>
+                <HideLocalAccountScreen>true</HideLocalAccountScreen>
+                <HideOEMRegistrationScreen>true</HideOEMRegistrationScreen>
+                <HideOnlineAccountScreens>true</HideOnlineAccountScreens>
+                <HideWirelessSetupInOOBE>true</HideWirelessSetupInOOBE>
+                <ProtectYourPC>3</ProtectYourPC>
+                <UnattendEnableRetailDemo>false</UnattendEnableRetailDemo>
+            </OOBE>
+            <UserAccounts>
+                <AdministratorPassword>
+                    <Value>p@55word1</Value>
+                    <PlainText>true</PlainText>
+                </AdministratorPassword>
+                <LocalAccounts>
+                    <LocalAccount wcm:action="add">
+                        <Password>
+                            <Value>p@55word1</Value>
+                            <PlainText>true</PlainText>
+                        </Password>
+                        <Description>GreyhamWooHoo</Description>
+                        <DisplayName>GreyhamWooHoo</DisplayName>
+                        <Group>Administrators</Group>
+                        <Name>GreyhamWooHoo</Name>
+                    </LocalAccount>
+                </LocalAccounts>
+            </UserAccounts>
+        </component>
+    </settings>
+    <settings pass="specialize">
+        <component name="Microsoft-Windows-Shell-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <ProductKey>C3RCX-M6NRP-6CXC9-TW2F2-4RHYD</ProductKey>
+            <OEMName>GreyhamWooHoo</OEMName>
+            <TimeZone>AUS Eastern Standard Time</TimeZone>
+            <SignInMode>1</SignInMode>
+            <ShowWindowsLive>false</ShowWindowsLive>
+            <ShowPowerButtonOnStartScreen>true</ShowPowerButtonOnStartScreen>
+            <RegisteredOwner>You</RegisteredOwner>
+            <RegisteredOrganization>Your Organization</RegisteredOrganization>
+            <EnableStartMenu>true</EnableStartMenu>
+            <DoNotCleanTaskBar>false</DoNotCleanTaskBar>
+            <DisableAutoDaylightTimeSet>false</DisableAutoDaylightTimeSet>
+            <CopyProfile>false</CopyProfile>
+            <ConvertibleSlateModePromptPreference>0</ConvertibleSlateModePromptPreference>
+            <ComputerName>GH17092K16DEF18</ComputerName>
+            <BluetoothTaskbarIconEnabled>false</BluetoothTaskbarIconEnabled>
+        </component>
+        <component name="Microsoft-Windows-International-Core" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <InputLocale>en-AU</InputLocale>
+            <SystemLocale>en-AU</SystemLocale>
+            <UILanguage>en-AU</UILanguage>
+            <UILanguageFallback>en-US</UILanguageFallback>
+            <UserLocale>en-AU</UserLocale>
+        </component>
+    </settings>
+    <cpi:offlineImage cpi:source="wim://G:/installation-media/en_windows_server_2016_updated_feb_2018_x64_dvd_11636692/sources/install.wim#Windows Server 2016 SERVERSTANDARD" xmlns:cpi="urn:schemas-microsoft-com:cpi" />
+</unattend>
