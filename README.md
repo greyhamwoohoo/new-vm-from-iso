@@ -1,5 +1,5 @@
 # new-vm-from-iso
-Fully automate the creation of a new Hyper-V Virtual Machine and bootable Vhdx containing Windows installed from an ISO: on first boot, the Windows Vm will automatically configure itself using Unattend.Xml and stop at the Login Screen. 
+Fully automate the creation of a new Hyper-V Virtual Machine and bootable Vhdx containing Windows installed from an ISO: on first boot, the Windows Vm will automatically configure itself using Unattend.Xml and stop at the Login Screen. All Windows Updates will be installed and pending reboots handled automatically. The script will closedown and Checkpoint the machine when all Windows Updates are installed. 
 
 A number of Unattend files for 64-bit OS's are provided for various editions of Windows.
 
@@ -8,6 +8,8 @@ This solution is written using 100% PowerShell 5 - third party tools such as Pac
 
 ## Requirements
 A Windows 64-Bit Hyper-V Host (Tested on: Windows 10 Pro)<br>
+PowerShellDirect Support on the Host 
+PowerShellDirect Support on the Guest
 PowerShell 5
 
 
@@ -54,10 +56,11 @@ All Unattend files exist under the 'unattend-files' folder.
 ## References
 | Description | Link |
 | ----------- | ---- |
-| The Convert-WindowsImage script is used by the Hyper-V Team for testing and contains everything you need to automate setting up a bootable VHD(x) from Windows installation media. I used this script as a reference, took the bare minimum I needed and used 100% PowerShell instead of the Interop/P-Invoke<br><br>If you require more flexibility, it is clearly better you use this script rather than my cut-down ConvertTo-WindowsInstallation Module in this repository | https://github.com/MicrosoftDocs/Virtualization-Documentation/tree/master/hyperv-tools/Convert-WindowsImage |
+| The Convert-WindowsImage script is used by the Hyper-V Team for testing and contains everything you need to automate setting up a bootable VHD(x) from Windows installation media. I used this script as a reference, took the bare minimum I needed and used 100% PowerShell instead of the Interop/P-Invoke<br><br>If you require more flexibility, it is clearly better you use this script rather than my cut-down ConvertTo-WindowsInstallation module in this repository | https://github.com/MicrosoftDocs/Virtualization-Documentation/tree/master/hyperv-tools/Convert-WindowsImage |
 | Official Microsoft script (Convert-WindowsImage.ps1) which replaced WIM2VHD. Provides more history and context than the above reference | https://gallery.technet.microsoft.com/scriptcenter/Convert-WindowsImageps1-0fe23a8f |
-| The best walkthu I could find of setting up an automated Windows 10 Installation from scratch (partition setup, OOBE, differences between Autounattend.xml and Unattend.xml etc). | https://www.tenforums.com/tutorials/96683-create-media-automated-unattended-install-windows-10-a.html |
+| The best walkthru I could find of setting up an automated Windows 10 Installation from scratch (partition setup, OOBE, differences between Autounattend.xml and Unattend.xml etc). | https://www.tenforums.com/tutorials/96683-create-media-automated-unattended-install-windows-10-a.html |
 | Landing Page for Out-Of-The-Box Experience. | https://docs.microsoft.com/en-us/windows-hardware/customize/desktop/customize-oobe |
 | Generic Product Keys: These keys will get us through the OOBE experience but will not activate windows | https://www.tenforums.com/tutorials/95922-generic-product-keys-install-windows-10-editions.html |
 | Windows System Image Manager: You can download the Windows ADK from this page and run the tool on Windows 10: this tool will allow you to configure the Unattend.Xml for any ISO images and other OS's you might have around | https://docs.microsoft.com/en-us/windows-hardware/customize/desktop/wsim/windows-system-image-manager-technical-reference |
 | AVMA (Automatic Virtual Machine Activation). The Windows 2016 Standard (Desktop Experience) Product Key is the AVMA Key from this reference. | https://docs.microsoft.com/en-us/windows-server/get-started-19/vm-activation-19 |
+| PSWindowsUpdate is a PowerShell Gallery module for handling Windows Updates. I use PowerShell Direct to connect to the Vm Guest and execute this module. | https://www.powershellgallery.com/packages/PSWindowsUpdate/2.0.0.4 |
