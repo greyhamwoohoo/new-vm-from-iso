@@ -9,7 +9,7 @@
 #Requires -Modules Hyper-V
 Set-StrictMode -Version 5
 
-$ErrorActionPreference="Stop"
+$ErrorActionPreference="Continue"
 $VerbosePreference="Continue"
 
 Remove-Module ConvertTo-WindowsInstallation -Force -ErrorAction SilentlyContinue
@@ -17,7 +17,7 @@ Import-Module .\powershell-modules\ConvertTo-WindowsInstallation\ConvertTo-Windo
 
 
 # Point this somewhere with a lot of space; a subfolder will be created for each Virtual Machine
-$vmsRootFolder = "D:\HVVM"
+$vmsRootFolder = "C:\HVVMAuto"
 # Credentials for an Administrator user; this used is created in the Unattend.Xml files I provide for each OS and Edition
 $username = "GreyhamWooHoo"
 $plainTextPassword = "p@55word1"                               
@@ -33,6 +33,18 @@ $externalSwitchName = $availableExternalSwitches[0].Name
 
 $allTestedIsos = @(
     @{
+        IsoPath="G:\ISOs\OperatingSystems\WIndows10\en-us_windows_10_consumer_editions_version_22h2_updated_july_2023_x64_dvd_0ee9325c.iso"
+        VmName="GH0723W10PRO64"
+        UnattendPath="F:\greyhamwoohoo\new-vm-from-iso\unattend-files\en-us_windows_10_consumer_editions_version_22h2_updated_july_2023_x64_dvd_0ee9325c\Windows 10 Pro.Xml"
+        Edition="Windows 10 Pro"
+    },
+    @{
+        IsoPath="G:\ISOs\OperatingSystems\WIndows11\en-us_windows_11_consumer_editions_version_21h2_updated_july_2023_x64_dvd_16543cb9.iso"
+        VmName="GH0723W11PRO64"
+        UnattendPath="F:\greyhamwoohoo\new-vm-from-iso\unattend-files\en-us_windows_11_consumer_editions_version_21h2_updated_july_2023_x64_dvd_16543cb9\Windows 11 Pro.Xml"
+        Edition="Windows 11 Pro"
+    } 
+<#  @{
         IsoPath="G:\ISOs\OperatingSystems\Windows10\en_windows_10_consumer_editions_version_1809_updated_dec_2018_x64_dvd_d7d23ac9.iso"
         VmName="GH1809W10PRO64"
         UnattendPath="F:\greyhamwoohoo\new-vm-from-iso\unattend-files\en_windows_10_consumer_editions_version_1809_updated_dec_2018_x64_dvd_d7d23ac9\Windows 10 Pro.Xml"
@@ -93,7 +105,11 @@ $allTestedIsos = @(
     Wait-PowerShellDirectState -Vm $vm -Credential $credential -TimeoutInMinutes 10 -ScriptBlock { try { Invoke-RestMethod -Method GET -Uri "https://google.com.au"; Write-Output $True } catch { Write-Output $False } }
     Write-Verbose "Network Connectivity achieved"
     Wait-LogonScreen -Vm $vm -Credential $credential
-    Update-OperatingSystem -Vm $vm -Credential $credential
+    Update-OperatingSystem -Vm $vm -Credential $credential -UpdateKind "WindowsUpdate"
+    
+    # OPTIONAL:
+    # Update-OperatingSystem -Vm $vm -Credential $credential -UpdateKind "MicrosoftUpdate"
+
     Stop-VmWithShutdown -VM $vm -Credential $credential
     Checkpoint-VM -VM $vm -SnapshotName "AfterWindowsUpdates"
 }

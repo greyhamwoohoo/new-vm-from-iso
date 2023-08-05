@@ -50,12 +50,22 @@ function Enable-BootableWindowsPartition {
         {
             Write-Verbose "Making image bootable..."
             $bcdBootArgs = @("$($windowsDrive)\Windows","/s $systemDrive","/v","/f BIOS")
+            Write-Verbose "Args: $($bcdBootArgs)"
 
-            Invoke-Executable -Path $BCDBoot -Arguments $bcdBootArgs -WorkingFolder $WorkingFolder
+            #
+            # These BCD Commands might cause a non-terminating error by writing output to STDERR. 
+            # 
+            # We want to surface but continue in the case of all non-terminating errors.
+            #
+            # Examples of output include:
+            # BFSVC Warning: Failed to flush system volume. Error = 0x5
+            # BFSVC Warning: Failed to flush system partition. Error = [5]
+            #
+            Invoke-Executable -Path $BCDBoot -Arguments $bcdBootArgs -WorkingFolder $WorkingFolder -ErrorAction Continue
 
-            Invoke-Executable -Path $BCDEdit -Arguments @("/store $($systemDrive)\boot\bcd","/set `{bootmgr`} device locate") -WorkingFolder $WorkingFolder
-            Invoke-Executable -Path $BCDEdit -Arguments @("/store $($systemDrive)\boot\bcd","/set `{default`} device locate") -WorkingFolder $WorkingFolder
-            Invoke-Executable -Path $BCDEdit -Arguments @("/store $($systemDrive)\boot\bcd","/set `{default`} osdevice locate") -WorkingFolder $WorkingFolder
+            Invoke-Executable -Path $BCDEdit -Arguments @("/store $($systemDrive)\boot\bcd","/set `{bootmgr`} device locate") -WorkingFolder $WorkingFolder -ErrorAction Continue
+            Invoke-Executable -Path $BCDEdit -Arguments @("/store $($systemDrive)\boot\bcd","/set `{default`} device locate") -WorkingFolder $WorkingFolder -ErrorAction Continue
+            Invoke-Executable -Path $BCDEdit -Arguments @("/store $($systemDrive)\boot\bcd","/set `{default`} osdevice locate") -WorkingFolder $WorkingFolder -ErrorAction Continue
         } 
     }
 }

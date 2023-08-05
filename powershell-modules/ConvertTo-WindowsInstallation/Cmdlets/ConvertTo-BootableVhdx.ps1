@@ -117,8 +117,8 @@ function ConvertTo-BootableVhdx {
             Write-Output $result
         }
         finally {
-            Dismount-VHD $VhdPath -ErrorAction SilentlyContinue
-            Dismount-DiskImage $IsoPath -ErrorAction SilentlyContinue
+            Dismount-VHD $VhdPath -ErrorAction SilentlyContinue | Out-Null
+            Dismount-DiskImage $IsoPath -ErrorAction SilentlyContinue | Out-Null
         }
 
     }

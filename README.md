@@ -47,6 +47,7 @@ All Unattend files exist under the 'unattend-files' folder.
 ## ISO Locations and Unattend.Xml filenames
 | ISO | Edition/Unattend.Xml  |
 | --- | -------- |
+| en-us_windows_11_consumer_editions_version_21h2_updated_july_2023_x64_dvd_16543cb9 | Windows 11 Pro.Xml |
 | en_windows_10_consumer_editions_version_1809_updated_dec_2018_x64_dvd_d7d23ac9 | Windows 10 Pro.Xml |
 | - | Windows 10 Home.Xml |
 | en_windows_server_version_1709_updated_jan_2018_x64_dvd_100492040 | Windows Server Standard.xml |
@@ -60,7 +61,7 @@ All Unattend files exist under the 'unattend-files' folder.
 | Official Microsoft script (Convert-WindowsImage.ps1) which replaced WIM2VHD. Provides more history and context than the above reference | https://gallery.technet.microsoft.com/scriptcenter/Convert-WindowsImageps1-0fe23a8f |
 | The best walkthru I could find of setting up an automated Windows 10 Installation from scratch (partition setup, OOBE, differences between Autounattend.xml and Unattend.xml etc). | https://www.tenforums.com/tutorials/96683-create-media-automated-unattended-install-windows-10-a.html |
 | Landing Page for Out-Of-The-Box Experience. | https://docs.microsoft.com/en-us/windows-hardware/customize/desktop/customize-oobe |
-| Generic Product Keys: These keys will get us through the OOBE experience but will not activate windows | https://www.tenforums.com/tutorials/95922-generic-product-keys-install-windows-10-editions.html |
+| Generic Product Keys: These keys will get us through the OOBE experience but will not activate windows | https://gist.github.com/jhermsmeier/5959110 |
 | Windows System Image Manager: You can download the Windows ADK from this page and run the tool on Windows 10: this tool will allow you to configure the Unattend.Xml for any ISO images and other OS's you might have around | https://docs.microsoft.com/en-us/windows-hardware/customize/desktop/wsim/windows-system-image-manager-technical-reference |
 | AVMA (Automatic Virtual Machine Activation). The Windows 2016 Standard (Desktop Experience) Product Key is the AVMA Key from this reference. | https://docs.microsoft.com/en-us/windows-server/get-started-19/vm-activation-19 |
 | PSWindowsUpdate is a PowerShell Gallery module for handling Windows Updates. I use PowerShell Direct to connect to the Vm Guest and execute this module. | https://www.powershellgallery.com/packages/PSWindowsUpdate/2.0.0.4 |
